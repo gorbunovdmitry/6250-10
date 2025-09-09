@@ -7,6 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
         <style>
             /* Убран пустой @font-face */
         </style>
@@ -41,6 +44,16 @@
             position: relative;
         }
 
+        .back-button {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #666666;
+            cursor: pointer;
+        }
 
         .page-title {
             font-size: 20px;
@@ -98,7 +111,6 @@
         }
 
         .subtitle {
-            font-family: 'Roboto', sans-serif;
             font-size: 16px;
             font-weight: 400;
             color: #666666;
@@ -123,7 +135,6 @@
         }
 
         .carousel-title {
-            font-family: 'Roboto', sans-serif;
             font-size: 16px;
             font-weight: 600;
             color: #000000;
@@ -295,9 +306,9 @@
             border: none;
             border-radius: 12px;
             padding: 16px 24px;
-            font-family: 'Roboto', sans-serif;
             font-size: 16px;
             font-weight: 600;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             cursor: pointer;
             transition: background-color 0.3s ease;
             margin: 20px 0 40px;
@@ -337,7 +348,6 @@
     </style>
 
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VNG605KE2R"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -363,6 +373,7 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
+            <button class="back-button" onclick="goBack()">← Назад</button>
         </div>
 
         <!-- iPhone Section -->
@@ -408,12 +419,12 @@
         </div>
 
         <!-- CTA Button -->
-        <button class="cta-button" onclick="selectDesign()" id="orderButton">Заказать за 990 ₽
-            
+        <button class="cta-button" onclick="selectDesign()" id="orderButton">
+            Заказать за 990 ₽
         </button>
     </div>
 
-    <script>
+        <script>
         // Current selections - simplified for 6250-1
         
         // Переменная для отслеживания состояния кнопки
@@ -866,7 +877,7 @@
                 console.log('Начинаем процесс заказа...');
                 
                 // Обновляем текст кнопки
-                // orderButton.textContent = 'Обрабатываем заказ...';
+                orderButton.textContent = 'Обрабатываем заказ...';
                 orderButton.disabled = true;
                 orderButton.style.opacity = '0.6';
                 orderButton.style.cursor = 'not-allowed';
@@ -881,7 +892,7 @@
                 if (success) {
                     console.log('Данные успешно отправлены, перенаправляем на страницу благодарности');
                     // Обновляем текст кнопки перед перенаправлением
-                    // orderButton.textContent = 'Заказ принят!';
+                    orderButton.textContent = 'Заказ принят!';
                     // Небольшая задержка для показа пользователю
                     setTimeout(() => {
                         window.location.href = 'thank-you.html';
@@ -889,7 +900,7 @@
                 } else {
                     console.error('Ошибка при отправке данных, но заказ принят');
                     // Обновляем текст кнопки
-                    // orderButton.textContent = 'Заказ принят!';
+                    orderButton.textContent = 'Заказ принят!';
                     // Небольшая задержка для показа пользователю
                     setTimeout(() => {
                         window.location.href = 'thank-you.html';
@@ -898,7 +909,7 @@
             } catch (error) {
                 console.error('Ошибка при обработке заказа:', error);
                 // В случае ошибки все равно перенаправляем на страницу благодарности
-                // orderButton.textContent = 'Заказ принят!';
+                orderButton.textContent = 'Заказ принят!';
                 setTimeout(() => {
                     window.location.href = 'thank-you.html';
                 }, 1000);
@@ -906,6 +917,8 @@
             // Не сбрасываем флаг isOrderProcessing, чтобы кнопка оставалась заблокированной
         }
     </script>
+
+
 
     <script>
         // Отправляем событие просмотра конструктора только при первом рендере
